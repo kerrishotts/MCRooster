@@ -39,11 +39,11 @@ APP.start = function ()
 
 //
 // Boiler-plate to start our app
-document.addEventListener ("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
   APP.FW.init();
   APP.start();
 }
 
-setTimeout (onDeviceReady,1000);
+//setTimeout (onDeviceReady,1000);
