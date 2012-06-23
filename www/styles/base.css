@@ -27,6 +27,17 @@ body
   opacity: 0;
 }
 
+.content
+{
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  overflow: hidden;
+}
+
 .navbar
 {
   position: absolute;
@@ -44,6 +55,28 @@ body
   line-height:44px;
   z-index:1;
   
+}
+
+.navbar button
+{
+  -webkit-appearance: none;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background-color: rgba(64,128,192,0.25);
+  -webkit-text-shadow: 0px -1px 0px #000;
+  text-shadow: 0px -1px 0px #000;
+  color:#FFF;
+  font-size:10pt;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  padding-left:10px;
+  padding-right:10px;
+  position: absolute;
+  line-height: 25px;
+  top: 8px;
+  height: 28px;
 }
 
 #mainView_sky
