@@ -50,8 +50,8 @@ APP.mainView.init = function ()
     APP.mainView.moonElement = document.getElementById ("mainView_moon");
     
     
-//    APP.FW.addEventListenerTo ( "touchend", APP.mainView.touchToStart, APP.mainView.startTime );
-    APP.FW.addEventListenerTo ( "click", APP.mainView.touchToStart, APP.mainView.startTime );
+    APP.FW.addEventListenerTo ( "touchend", APP.mainView.touchToStart, APP.mainView.startTime );
+//    APP.FW.addEventListenerTo ( "click", APP.mainView.touchToStart, APP.mainView.startTime );
     
     APP.mainView.time = 0;
     
@@ -74,7 +74,7 @@ APP.mainView.updateTime = function ()
 {
   var theCurrentTime = (new Date()).getTime() / 1000;
   var theTimeDelta = theCurrentTime - APP.mainView.dawnStartedAt;
-  var theTimeFactor = 1;
+  var theTimeFactor = 1; //0;
   
   var theNewMinecraftTime = (theTimeDelta*theTimeFactor) % 1200;
   
@@ -109,15 +109,18 @@ APP.mainView.updateDisplay = function ()
   var theTime = APP.mainView.time;
   
   // calculate the position of the sun and moon according to the time of day
-//  theSun.style.left = 50 - (Math.cos ( (theTime/(1200/360)) * Math.PI/180 ) * 25) + "%";
   if ( 0 < theTime && theTime < 800 )
   {
-    theSun.style.top  = 40 - (Math.sin ( (theTime/(800/180)) * Math.PI/180 ) * 35) + "%";
+    theSun.style.display = "block";
+    theMoon.style.display = "none";
+    theSun.style.top  = 43 - (Math.sin ( (theTime/(800/180)) * Math.PI/180 ) * 35) + "%";
     theMoon.style.top = "50%";
   }
   if ( 800 < theTime && theTime < 1200 )
   {
-    theMoon.style.top  = 40 - (Math.sin ( ((1200-theTime)/(400/180)) * Math.PI/180 ) * 35) + "%";
+    theSun.style.display = "none";
+    theMoon.style.display = "block";
+    theMoon.style.top  = 43 - (Math.sin ( ((1200-theTime)/(400/180)) * Math.PI/180 ) * 35) + "%";
     theSun.style.top = "50%";
   }
   
