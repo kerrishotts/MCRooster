@@ -1,9 +1,34 @@
 /*
  * MCRooster's APPLICATION script
+ *
+ * Author:  Kerri Shotts
+ * License: MIT
+ *
  */
  
 var APP = APP || {};
 
+//
+// We only have one property; we'll use this
+// to track whether or not the deviceReady
+// event has fired or not; if it does, we
+// can clear the timer below. If not, the
+// timer will eventually kick off our app.
+APP.startTimer = -1;
+
+/**
+ *
+ * Starts our app by loading in our mainView's HTML
+ * and JS code. Both are loaded asynchronously, so
+ * technically there is a chance the script is loaded
+ * before the HTML. This is why there is a short delay
+ * below to prevent calling init() until both have had
+ * time to load in.
+ *
+ * The proper way would be to chain the two together,
+ * but for readability's sake, I've split them out here.
+ *
+ */
 APP.start = function ()
 {
   // we need to load in our only view.
@@ -17,7 +42,12 @@ APP.start = function ()
                   console.log ( "Failed to load our view with status " + errorCode );
                 }
               );
-  // also, load in our view's script.
+              
+  // also, load in our view's script. Note that we have to create a script
+  // element and add the text to it AND append it to the DOM to get it
+  // to execute.
+  // Also give 100ms for both views to finalize and the DOM to stabilize
+  // before calling init();
   APP.FW.load ( "./views/mainView.js",
                 function ( data )
                 {
@@ -40,10 +70,27 @@ APP.start = function ()
 //
 // Boiler-plate to start our app
 document.addEventListener("deviceready", onDeviceReady, false);
+
+/**
+ *
+ * If this is called via the above event, it means we have PG installed;
+ * so we can kill the timer and start the app.
+ *
+ */
 function onDeviceReady()
 {
+  if (APP.startTimer>=0)
+  {
+    clearTimeout (APP.startTimer);
+  }
   APP.FW.init();
   APP.start();
 }
 
-//setTimeout (onDeviceReady,1000);
+/**
+ *
+ * On the other hand, if PG is not installed, kick us off after 2s
+ * anyway. If PG intervenes prior, no harm no foul.
+ *
+ */
+APP.startTimer = setTimeout (onDeviceReady,2000);
