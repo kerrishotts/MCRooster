@@ -7,6 +7,10 @@ body
   font-size: 11pt;
   line-height: 1.25em;
   background-color: #000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .view
