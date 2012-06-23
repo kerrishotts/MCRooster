@@ -95,7 +95,7 @@ APP.FW.init = function ()
     // Take device.platform and assign it to our global
     // APP.FW.platform. Handle for ipad/iphone glitch.
     
-    APP.FW.platform = device.platform().toLowerCase();
+    APP.FW.platform = device.platform.toLowerCase();
     if (APP.FW.platform.indexOf("ipad") > -1 ||
         APP.FW.platform.indexOf("iphone") > -1)
     {
