@@ -23,6 +23,25 @@ body
   opacity: 0;
 }
 
+.navbar
+{
+  position: absolute;
+  top: 0;
+  height: 44px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-shadow: 0px -1px 0px #000;
+  color: #FFF;
+  background-color: #000;
+  box-shadow: 0px 22px 0px rgba(255,255,255,0.125) inset, 0px -1px 0px rgba(255,255,255,0.0625) inset, 0px 0px 5px #000;
+  text-align: center;
+  font-size: 20pt;
+  line-height:44px;
+  z-index:1;
+  
+}
+
 #mainView_sky
 {
   background-color: #002;
@@ -45,26 +64,30 @@ body
   width:100%;
 }
 
-#mainView_sun
+#mainView_sun,
+#mainView_moon
 {
   position: absolute;
   border: 0;
   background-color: #FF0;
   width:20%;
-  height:20%;
+  height:15%;
   left:40%;
   top:50%;
+  display: none;
 }
 
 #mainView_moon
 {
-  position: absolute;
-  border: 0;
-  width:20%;
-  height:20%;
   background-color: #FFF;
-  left:40%;
-  top:50%;
+}
+
+.landscape #mainView_sun,
+.landscape #mainView_moon
+{
+  width:15%;
+  height:20%;
+  left: 43.5%;
 }
 
 #mainView_touch2start
@@ -91,13 +114,13 @@ body
   position: absolute;
   right: 5%;
   bottom: 5%;
-  width: 40%;
+  width: 5em;
   height: 2em;
-  line-height: 2em;
+  line-height: 3.5em;
   font-size: 36pt;
   font-family: Courier New, mono;
   color: #8F8;
-  text-shadow: 0px 2px 1px #000;
+  text-shadow: 1px 2px 1px #000;
   text-align: right;
   font-weight: bold;
 }
