@@ -1,20 +1,27 @@
 /*
- * Framework / Utilities for APPooster
+ * Framework / Utilities for our app
+ *
+ * Author:  Kerri Shotts
+ * License: MIT
  */
  
 var APP = APP || {};
 
 APP.FW = APP.FW || {};
 
+//
+// Platform, formfactor, and orientation globals
 // these are determined in init() below
 APP.FW.platform = "unknown";
 APP.FW.formfactor = "unknown";
 APP.FW.orientation = "landscape";
 
-//
-// Handle the fact that WP7.5 doesn't support touch
-// events, but mouse events instead.
-
+/**
+ *
+ * Handle the fact that WP7.5 doesn't support touch
+ * events, but mouse events instead.
+ *
+ */
 APP.FW.addEventListenerTo = function( theEvent, theElement, onEvent )
 {
   var theNewEvent = theEvent.toLowerCase();
@@ -32,10 +39,13 @@ APP.FW.addEventListenerTo = function( theEvent, theElement, onEvent )
   theElement.addEventListener ( theNewEvent, onEvent, false );
 }
 
-//
-// Handle orientation changes
-//
-
+/**
+ *
+ * Handle orientation changes
+ * NOTE: Applies platform and formfactor to the BODY tag
+ * as well.
+ *
+ */
 APP.FW.updateOrientation = function ()
 {
   var theOrientation = "portrait";
@@ -54,6 +64,13 @@ APP.FW.updateOrientation = function ()
                                        APP.FW.orientation );
 }
 
+/**
+ *
+ * Uses XMLHttpRequest to load a snippet of code or html, whatever that
+ * may be. If the data is retrieved, onSuccess() is called, otherwise
+ * onFailure() is called.
+ *
+ */
 APP.FW.load = function ( whatToLoad, onSuccess, onFailure )
 {
   var r = new XMLHttpRequest();
@@ -79,6 +96,9 @@ APP.FW.load = function ( whatToLoad, onSuccess, onFailure )
   }
   
   var theURL = whatToLoad;
+  
+  // handle WP7's issue with relative URLs. Needs to be relatively
+  // absolute to /app/www.
   if (APP.FW.platform == "wince" && theURL.substr(0,4)!="http")
   {
     theURL = "/app/www/" + whatToLoad;
@@ -87,6 +107,20 @@ APP.FW.load = function ( whatToLoad, onSuccess, onFailure )
   r.send ( null );
 }
 
+/**
+ *
+ * Initialize the framework.
+ *
+ * If possible, the device platform will be determined and set
+ * into APP.FW.platform. The formfactor will also be determined
+ * based upon some guesswork and set into APP.FW.formfactor.
+ *
+ * An orientation handler will also be installed to track
+ * changes in orientation. Finally, that orienation handler
+ * will be fired once to make sure that the BODY tag has the
+ * appropriate classes.
+ *
+ */
 APP.FW.init = function ()
 {
   if (typeof device != 'undefined')
