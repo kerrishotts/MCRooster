@@ -19,15 +19,8 @@ APP.startTimer = -1;
 /**
  *
  * Starts our app by loading in our mainView's HTML
- * and JS code. Both are loaded asynchronously, so
- * technically there is a chance the script is loaded
- * before the HTML. This is why there is a short delay
- * below to prevent calling init() until both have had
- * time to load in.
- *
- * The proper way would be to chain the two together,
- * but for readability's sake, I've split them out here.
- *
+ * and JS code. 
+*
  */
 APP.start = function ()
 {
