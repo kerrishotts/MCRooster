@@ -82,6 +82,7 @@ APP.FW.load = function ( whatToLoad, onSuccess, onFailure )
       {
         if (onSuccess)
         {
+		  //console.log ("loaded " + r.responseText);
           onSuccess( r.responseText );
         }
       }
@@ -99,12 +100,14 @@ APP.FW.load = function ( whatToLoad, onSuccess, onFailure )
   
   // handle WP7's issue with relative URLs. Needs to be relatively
   // absolute to /app/www.
+  //console.log ("loading " + theURL);
   if (APP.FW.platform == "wince" && theURL.substr(0,4)!="http")
   {
     theURL = "/app/www/" + whatToLoad;
   }
+  //console.log ("loading " + theURL);
   r.open ( 'GET', theURL, true );
-  r.send ( null );
+  r.send ( );
 }
 
 /**
