@@ -41,6 +41,11 @@ body
   overflow: hidden;
 }
 
+.wince .content
+{
+  top: 0px;
+}
+
 .navbar
 {
   position: absolute;
@@ -72,6 +77,20 @@ body
   font-size: 16pt;
   font-weight: bold;
   line-height: 56px;
+}
+
+.wince .navbar
+{
+  background-color: transparent;
+  -webkit-text-shadow: none;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #FFF;
+  text-align: left;
+  font-size: 48pt;
+  font-weight: normal;
+  line-height: 64px;
 }
 
 .navbar button
@@ -119,6 +138,21 @@ body
  width: 75px;
 }
 
+.wince .navbar .pos1
+{
+  left: auto;
+  right: 95px;
+  width: 75px;
+  top: 64px;
+}
+
+.wince .navbar .pos2
+{
+ right: 10px;
+ width: 75px;
+ top: 64px;
+}
+
 .android .navbar button
 {
   -webkit-border-radius: 0;
@@ -127,6 +161,16 @@ body
   background-color: #C0C0C0;
   color: #303030;
   line-height: 28px;
+}
+
+.wince .navbar button
+{
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border:2px solid #FFF;
+  background-color: #000;
+  color: #FFF;
+  line-height: 23px;
 }
 
 #mainView_sky
@@ -194,6 +238,12 @@ body
   background-color: transparent;
   -webkit-transition: opacity 250ms ease-in-out;
   opacity: 1;
+}
+
+.wince #mainView_touch2start
+{
+  top: 55%;
+  bottom: 35%;
 }
 
 #mainView_clock
